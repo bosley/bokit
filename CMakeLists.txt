@@ -1,26 +1,9 @@
-cmake_minimum_required (VERSION 3.8)
+project (bokit)
 
-project(bokit)
+add_library(${PROJECT_NAME} src/random/string.cpp)
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_STATIC_LIBRARY_PREFIX "")
+add_library(bokit ALIAS ${PROJECT_NAME})
 
-include(${CMAKE_SOURCE_DIR}/cmake/SetEnv.cmake)
-
-include_directories($CMAKE_SOURCE_DIR/lib)
-
-set(HEADERS
-    ${CMAKE_SOURCE_DIR}/bokit/random/generator.hpp
-    ${CMAKE_SOURCE_DIR}/bokit/random/entry.hpp
-    ${CMAKE_SOURCE_DIR}/bokit/random/string.hpp
-    ${CMAKE_SOURCE_DIR}/bokit/types/lifetime.hpp
-    ${CMAKE_SOURCE_DIR}/bokit/types/view.hpp
-    ${CMAKE_SOURCE_DIR}/bokit/types/shared_obj.hpp
+target_include_directories( ${PROJECT_NAME}
+    PUBLIC ${PROJECT_SOURCE_DIR}/include
 )
-
-set(SOURCES
-    ${CMAKE_SOURCE_DIR}/bokit/random/string.cpp
-)
-
-include(${CMAKE_SOURCE_DIR}/cmake/LibraryConfig.cmake)
-include(${CMAKE_SOURCE_DIR}/cmake/InstallConfig.cmake)
