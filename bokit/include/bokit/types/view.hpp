@@ -19,9 +19,8 @@ public:
 
   view_c() = default;
   
-  constexpr view_c(T& target, const std::size_t len)
+  view_c(T& target, const std::size_t len)
     : target_(&target), len_(len){
-      static_assert(len_ != 0);
     }
 
   const bool empty() const { return target_ == nullptr; }
