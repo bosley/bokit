@@ -1,2 +1,3 @@
 # bokit
-noun 1. a set of articles or equipment needed for a specific purpose.
+
+This is a toolkit of patterns and objects I've found myself using in different projects.
