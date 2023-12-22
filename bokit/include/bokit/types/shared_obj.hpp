@@ -85,5 +85,10 @@ private:
   T *object_{nullptr};
 };
 
+template<typename T>
+auto make_shared = [](auto... args) -> shared_obj_c<T> {
+  return new T(args...);
+};
+
 } // namespace
 #endif
