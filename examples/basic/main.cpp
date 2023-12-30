@@ -3,6 +3,7 @@
 #include "bokit/types/view.hpp"
 #include "bokit/types/shared_obj.hpp"
 #include "bokit/types/lifetime.hpp"
+#include "bokit/types/monotonic_counter.hpp"
 #include "bokit/byte_tools/transcoding.hpp"
 
 
@@ -113,6 +114,13 @@ void byte_tool_stuff() {
   std::cout << x << x.size() << " , " << dest.size() << std::endl;
 }
 
+void counter() {
+  bokit::types::monotonic_counter_c<uint8_t, 1> counter(250);
+  for(uint16_t i = 250; i < std::numeric_limits<uint8_t>::max() + 5; i++) {
+    std::cout << (int)counter.next() << std::endl;
+  }
+}
+
 int main(int argc, char** argv) {
 
   std::cout << "Basic example...\n";
@@ -120,6 +128,7 @@ int main(int argc, char** argv) {
   shared();
   lifetime();
   byte_tool_stuff();
+  counter();
 
   return 0;
 }
