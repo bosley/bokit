@@ -3,6 +3,7 @@
 #include "bokit/types/view.hpp"
 #include "bokit/types/shared_obj.hpp"
 #include "bokit/types/lifetime.hpp"
+#include "bokit/byte_tools/transcoding.hpp"
 
 
 void views() {
@@ -101,12 +102,24 @@ void lifetime() {
   std::cout << "Leaving " << __func__ << std::endl;
 }
 
+void byte_tool_stuff() {
+
+  std::string x = "cuppa";
+  std::vector<uint8_t> dest;
+
+  // Specify the <type> as the encoding for the string length in the vector
+  bokit::byte_tools::pack_string_into<uint32_t>(x, dest);
+
+  std::cout << x << x.size() << " , " << dest.size() << std::endl;
+}
+
 int main(int argc, char** argv) {
 
   std::cout << "Basic example...\n";
   views();
   shared();
   lifetime();
+  byte_tool_stuff();
 
   return 0;
 }

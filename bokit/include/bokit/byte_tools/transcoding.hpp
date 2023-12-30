@@ -63,6 +63,13 @@ static inline void pack_string_into(const std::string &str,
   target.insert(target.end(), str.begin(), str.end());
 }
 
+template <class T>
+static inline void pack_string_into(const std::string &str,
+                                    std::vector<uint8_t> &target) {
+  pack_into<T>((T)str.size(), target);
+  target.insert(target.end(), str.begin(), str.end());
+}
+
 //! \brief Unpack an encoded string (with prefixed len) from an index in a given data source
 static inline std::optional<std::string> unpack_string_at(const std::vector<uint8_t>& from, const std::size_t idx) {
   if (from.size() <= (idx + sizeof(std::size_t))) { return {}; }
